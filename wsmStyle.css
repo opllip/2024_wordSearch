@@ -1,0 +1,144 @@
+:root {
+  --main: #008080;
+  --sub: #ffc107;
+  --danger: #ce3505;
+  --default: #555555;
+  --white: #f6f6f6;
+  --black: #222222;
+  --darkgray: #555555;
+  --gray: #cccccc;
+  --bgc: #faffe4;
+}
+body {
+  background-color: var(--bgc);
+}
+main {
+  margin: 0 20px;
+}
+
+header {
+  margin: 0 20px;
+  height: 150px;
+  display: flex;
+  justify-self: center;
+  align-items: center;
+  flex-direction: column;
+  border-bottom: 4px solid var(--main);
+}
+h1 {
+  font-size: xx-large;
+  font-weight: bolder;
+  margin: 20px 0;
+  color: var(--main);
+}
+.back-btn {
+  border: 1px solid #027373;
+  background-color: var(--main);
+  border-radius: 20px;
+  color: white;
+  font-size: large;
+  padding: 12px 24px;
+  cursor: pointer;
+}
+
+/* gameMaker-form */
+.form-div {
+  margin-top: 20px;
+  width: 100%;
+}
+label {
+  color: var(--default);
+  font-size: 20px;
+  font-weight: bold;
+  display: block;
+  margin: 15px 0;
+}
+.form-div input,
+.form-div textarea {
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 6px 8px;
+  color: var(--black);
+  font-size: 18px;
+  font-weight: 700;
+  border: 2px solid var(--gray);
+  background-color: var(--white);
+}
+.submit-bth {
+  background-color: var(--sub);
+  color: var(--black);
+  font-size: 20px;
+  font-weight: bold;
+  width: 100%;
+  padding: 20px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  margin: 40px 0;
+  cursor: pointer;
+}
+
+/* wordlist  */
+.wordlist {
+  margin-top: 10px;
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+}
+.wordList-div {
+  display: inline-block;
+  width: 100%;
+  vertical-align: top;
+}
+
+/* .maker-info */
+.maker-info {
+  background-color: var(--main);
+  padding: 20px;
+}
+.maker-info h3 {
+  color: var(--sub);
+  font-weight: bold;
+  font-size: 20px;
+  margin-bottom: 18px;
+}
+.maker-info ul {
+  color: var(--white);
+  list-style: inside;
+  list-style-position: outside;
+  line-height: 1.4em;
+}
+.maker-info li {
+  margin-left: 20px;
+}
+
+/* footer */
+footer {
+  margin-top: 50px;
+  background-color: var(--darkgray);
+  width: 100%;
+  height: 80px;
+}
+
+@media (min-width: 520px) {
+  .wordList-div {
+    width: 50%;
+  }
+}
+@media (min-width: 800px) {
+  .wordList-div {
+    width: 33.33%;
+  }
+}
+@media (min-width: 1000px) {
+  .wordList-div {
+    width: 25%;
+  }
+}
+@media (min-width: 1250px) {
+  .wordList-div {
+    width: 20%;
+  }
+}
