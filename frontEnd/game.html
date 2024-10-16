@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Word Search - game</title>
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <header>
+      <h1>The Word Search</h1>
+      <div></div>
+    </header>
+    <main>
+      <div class="info-top">
+        <!-- 제목, 설명, 게임 소요 시간을 상단에 -->
+        <h2 class="title">제목들어올자리</h2>
+        <div class="description-div">
+          <h3>Description</h3>
+          <p class="description">내용 들어올 자리</p>
+        </div>
+        <div class="time-div">소요시간 : <span id="timer">시:분:초</span></div>
+      </div>
+      <section>
+        <div class="left-panel">
+          <!-- 단어 리스트 및 정답 확인 기능 -->
+          <ul class="wordList-ul">
+            <li class="word default-word">못찾은 단어</li>
+            <li class="word found-word">찾은 단어</li>
+          </ul>
+        </div>
+        <div class="middle-panel">
+          <!-- Word Search 게임 기능 -->
+          <div id="gameBoard"></div>
+        </div>
+        <div class="right-panel">
+          <!-- 게임 현황판 기능 -->
+          <ul class="userList-ul">
+            <li class="user">
+              <span class="userNm">유저이름</span>
+              <span class="userScore">점수</span>
+              <span class="userTime">00:00:00</span>
+            </li>
+            <li class="user ranker">
+              <span class="userNm">유저이름</span>
+              <span class="userScore">점수</span>
+              <span class="userTime">00:00:00</span>
+            </li>
+          </ul>
+        </div>
+      </section>
+    </main>
+    <footer></footer>
+    <script src="game.js"></script>
+  </body>
+</html>

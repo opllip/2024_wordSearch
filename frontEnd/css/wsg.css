@@ -1,0 +1,111 @@
+.info-top {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 30px 0;
+}
+.title {
+  font-size: 24px;
+  font-weight: 900;
+  margin-bottom: 20px;
+  color: var(--main);
+}
+.description-div {
+  padding: 24px;
+  width: 100%;
+  display: flex;
+  justify-content: start;
+  flex-direction: column;
+  border-bottom: 1px solid var(--sub);
+}
+.description-div h3 {
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 20px;
+  color: var(--default);
+}
+.time-div {
+  margin-top: 15px;
+  font-weight: bold;
+  font-size: 18px;
+}
+
+section {
+  display: flex;
+  justify-content: space-evenly;
+  padding: 40px 0;
+  margin: 0 20px;
+}
+
+/* left-panel */
+.left-panel {
+}
+.wordList-ul {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 10px;
+  font-weight: 600;
+}
+
+.default-word {
+  color: var(--black);
+}
+.found-word {
+  color: var(--default);
+  text-decoration: line-through;
+}
+
+/* 게임판 */
+#gameBoard {
+  display: grid;
+  grid-template-columns: repeat(8, 50px); /** 갯수, 칸 사이즈*/
+}
+.cell {
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #000;
+}
+
+/* right-panel */
+.right-panel {
+}
+.userList-ul {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 20px;
+  gap: 15px;
+  max-height: 600px;
+  overflow-y: auto;
+}
+.user {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 18px;
+}
+.user.ranker {
+  font-weight: bold;
+}
+.userNm {
+  width: 100px;
+  text-wrap: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-right: 10px;
+}
+.userScore {
+  margin-right: 10px;
+}
+.userTime {
+  background-color: var(--gray);
+  padding: 12px 24px;
+  border-radius: 3px;
+}

@@ -1,0 +1,47 @@
+@import "reset.css";
+@import "wsm.css";
+@import "wsg.css";
+
+:root {
+  --main: #008080;
+  --sub: #ffc107;
+  --danger: #ce3505;
+  --default: #555555;
+  --white: #f6f6f6;
+  --black: #222222;
+  --gray: #cccccc;
+  --bgc: #faffe4;
+}
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo",
+    "Pretendard Variable", Pretendard, Roboto, "Noto Sans KR", "Segoe UI",
+    "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
+    sans-serif;
+  background-color: var(--bgc);
+}
+main {
+  margin: 0 20px;
+}
+/* header */
+header {
+  margin: 0 20px;
+
+  display: flex;
+  justify-self: center;
+  align-items: center;
+  flex-direction: column;
+  border-bottom: 4px solid var(--main);
+}
+h1 {
+  font-size: xx-large;
+  font-weight: bolder;
+  margin: 20px 0;
+  color: var(--main);
+}
+/* footer */
+footer {
+  margin-top: 50px;
+  background-color: var(--default);
+  width: 100%;
+  height: 80px;
+}
