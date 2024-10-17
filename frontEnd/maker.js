@@ -9,9 +9,20 @@ const wordCheck = (word) => {
   for (let i = 0; i < word.length; i++) {
     const inputVal = word[i].value;
     const msgSpan = word[i].nextElementSibling;
+    const regex = /^[A-Za-z\s-]+$/;
+    const isValid = regex.test(inputVal);
 
-    //글자 수 체크
-    if (inputVal.length > 15) {
+    if (!isValid && inputVal.length > 0) {
+      msgSpan.innerText = "영문, 2개이하의 공백과 -만 사용할 수 있습니다.";
+      msgSpan.classList.add("block");
+      wrongCnt++;
+    } else if (inputVal.length < 3) {
+      //글자 수 체크
+      msgSpan.innerText = "2자 이상 입력해주세요.";
+      msgSpan.classList.add("block");
+      wrongCnt++;
+    } else if (inputVal.length > 15) {
+      //글자 수 체크
       msgSpan.innerText = "14자 이하로 입력해주세요.";
       msgSpan.classList.add("block");
       wrongCnt++;
@@ -25,7 +36,7 @@ const wordCheck = (word) => {
     } else {
       msgSpan.innerText = "";
       msgSpan.classList.remove("block");
-      if (inputVal != "") wordList.push(word[i].value);
+      if (inputVal != "") wordList.push(word[i].value).toUpperCase();
     }
   }
 
@@ -57,6 +68,7 @@ const handleSubmitForm = async (event) => {
   //let wordList = [];
   let wordList = await wordCheck(word);
   console.log(wordList);
+
   if (wordList) {
     console.log("true wordList : ", wordList);
 
@@ -70,12 +82,14 @@ const handleSubmitForm = async (event) => {
         body,
       });
       const data = await res.json();
-      if (data === "200") window.location.pathname = "/game.html";
+      if (data === "200") {
+        //window.location.pathname = "/game.html";
+      }
     } catch (e) {
       console.error(e);
     }
   } else {
-    alert("문제가 있습니다.");
+    console.log("wordList 전송에 문제가 있습니다.");
     return false;
   }
 };
@@ -89,6 +103,31 @@ const handlerGoHome = () => {
 };
 backBtn.addEventListener("click", handlerGoHome);
 
+//input keypress 이벤트 ===============================
+const validationInput = (event) => {
+  const code = event.code;
+  //console.log("code : ", code);
+
+  // Backspace와 Tab 키는 허용
+  if (code === "Backspace" || code === "Tab") {
+    return; // 아무것도 하지 않음
+  }
+
+  if (code === "Minus" || code === "Space") {
+    const currentValue = event.target.value;
+    const spaceCnt = (currentValue.match(/ /g) || []).length; // 공백 개수
+    const minusCnt = (currentValue.match(/-/g) || []).length; // 대시 개수
+    const count = minusCnt + spaceCnt;
+    //console.log("count : ", count);
+
+    if (count > 1) {
+      event.preventDefault(); // 기본 입력 방지
+      //console.log(code === "Space" ? " " : "-", " 입력방지");
+    }
+    return; // 종료
+  }
+};
+
 //input30개 뿌리기 ===============================
 const inputRender = () => {
   const wordListEl = document.querySelector(".wordlist");
@@ -98,6 +137,7 @@ const inputRender = () => {
     const input = document.createElement("input");
     input.type = "text";
     input.name = "word";
+    input.addEventListener("keypress", validationInput);
 
     const wordMsg = document.createElement("span");
     wordMsg.className = "word-msg";

@@ -75,6 +75,7 @@
 .maker-info {
   background-color: var(--main);
   padding: 20px;
+  margin-top: 10px;
 }
 .maker-info h3 {
   color: var(--sub);
