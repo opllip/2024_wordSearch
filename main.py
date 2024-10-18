@@ -1,9 +1,11 @@
 from fastapi import FastAPI,Form, Response
 from fastapi.staticfiles import StaticFiles
-from fastapi.responses import JSONResponse
+from fastapi.responses import JSONResponse, HTMLResponse
 from fastapi.encoders import jsonable_encoder
 from typing import Annotated
 import sqlite3
+from pydantic import BaseModel
+
 
 
 
@@ -28,7 +30,12 @@ cur.execute(f"""
 	FOREIGN KEY (gameInfo_idx) REFERENCES gameInfo(idx)
 	);
             """)
+
+
+
 app = FastAPI()
+
+
 
 # 게임저장하기
 @app.post('/makeGame')
@@ -67,10 +74,36 @@ async def create_game(
                 ({gameIdx} , '{word}')
                 """)
     con.commit()
-    return '200'
+    return gameIdx
+
+# 게임페이지 이동
+@app.get("/games/{gameIdx}", response_class=HTMLResponse)
+async def game_page(gameIdx):
+    with open("frontEnd/game.html", encoding='utf-8' ) as f:
+        content = f.read().replace("{{ gameIdx }}", str(gameIdx))
+    return HTMLResponse(content=content)
 
 
-
+# 아이템 불러오기
+@app.get("/getGame/{gameIdx}")
+async def get_game(gameIdx):
+    con.row_factory = sqlite3.Row
+    #  ㄴ 컬럼명도 같이 가져오는 문법
+    cur = con.cursor() 
+    # 게임정보의 idx 가져오기
+    gameInfo = cur.execute(f"""
+                       SELECT * FROM gameInfo
+                       WHERE  idx= {gameIdx}
+                       """).fetchone()
+    rows = cur.execute(f"""
+                       SELECT idx, word FROM gameWord
+                       WHERE gameInfo_idx= {gameIdx}
+                       """).fetchall()
+    
+    gameSet = {"gameInfo": gameInfo, "rows": rows }
+    return JSONResponse( jsonable_encoder(gameSet))
+  
+  
 
 
 

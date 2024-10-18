@@ -40,6 +40,7 @@ section {
 
 /* left-panel */
 .left-panel {
+  width: 200px;
 }
 .wordList-ul {
   display: flex;
@@ -49,10 +50,11 @@ section {
   gap: 10px;
   font-weight: 600;
 }
-
-.default-word {
+.word {
   color: var(--black);
+  margin: 5px auto;
 }
+
 .found-word {
   color: var(--default);
   text-decoration: line-through;
@@ -61,7 +63,7 @@ section {
 /* 게임판 */
 #gameBoard {
   display: grid;
-  grid-template-columns: repeat(8, 50px); /** 갯수, 칸 사이즈*/
+  grid-template-columns: repeat(16, 50px); /** 갯수, 칸 사이즈*/
 }
 .cell {
   width: 50px;
