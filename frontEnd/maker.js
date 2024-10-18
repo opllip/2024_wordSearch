@@ -7,7 +7,7 @@ const wordCheck = (word) => {
 
   //단어 등록한 것 하나씩 조건 비교하기
   for (let i = 0; i < word.length; i++) {
-    const inputVal = word[i].value;
+    const inputVal = word[i].value.trim();
     const msgSpan = word[i].nextElementSibling;
     const regex = /^[A-Za-z\s-]+$/;
     const isValid = regex.test(inputVal);
@@ -36,7 +36,7 @@ const wordCheck = (word) => {
     } else {
       msgSpan.innerText = "";
       msgSpan.classList.remove("block");
-      if (inputVal != "") wordList.push(word[i].value).toUpperCase();
+      if (inputVal != "") wordList.push(inputVal.toUpperCase());
     }
   }
 
@@ -67,10 +67,9 @@ const handleSubmitForm = async (event) => {
 
   //let wordList = [];
   let wordList = await wordCheck(word);
-  console.log(wordList);
 
   if (wordList) {
-    console.log("true wordList : ", wordList);
+    //console.log("true wordList : ", wordList);
 
     const body = new FormData(gameMakerForm);
     body.append("createAt", new Date().getTime());
@@ -83,6 +82,7 @@ const handleSubmitForm = async (event) => {
       });
       const data = await res.json();
       if (data === "200") {
+        console.log("게임이 저장되었습니다.");
         //window.location.pathname = "/game.html";
       }
     } catch (e) {
